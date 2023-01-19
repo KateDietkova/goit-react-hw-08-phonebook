@@ -4,8 +4,8 @@ import { Filter } from './Filter/Filter';
 import { Box } from './Box/Box';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
+import { selectContacts } from 'redux/contacts/contacts-selectors';
+import { fetchContacts } from 'redux/contacts/contacts-operations';
 import { Loader } from './Loader/Loader';
 
 export const App = () => {

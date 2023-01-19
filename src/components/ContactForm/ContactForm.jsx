@@ -7,8 +7,8 @@ import {
   ButtonStyled,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/contacts-operations';
+import { selectContacts } from 'redux/contacts/contacts-selectors';
 
 const initialValue = {
   name: '',
@@ -46,7 +46,6 @@ export const ContactForm = () => {
       dispatch(addContact(value));
       resetForm();
     }
-
   };
 
   return (

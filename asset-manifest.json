@@ -1,13 +1,24 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-08-phonebook/static/css/main.7acaea2f.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.8d147ee1.js",
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.311f3dbc.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.bcc5cf50.js",
+    "static/js/468.67fc88a1.chunk.js": "/goit-react-hw-08-phonebook/static/js/468.67fc88a1.chunk.js",
+    "static/js/52.e65a9147.chunk.js": "/goit-react-hw-08-phonebook/static/js/52.e65a9147.chunk.js",
+    "static/js/696.3edba595.chunk.js": "/goit-react-hw-08-phonebook/static/js/696.3edba595.chunk.js",
+    "static/js/936.f2e2f946.chunk.js": "/goit-react-hw-08-phonebook/static/js/936.f2e2f946.chunk.js",
+    "static/js/642.6b145bf4.chunk.js": "/goit-react-hw-08-phonebook/static/js/642.6b145bf4.chunk.js",
+    "static/media/headerLightBlue.jpg": "/goit-react-hw-08-phonebook/static/media/headerLightBlue.4601cfa352e40ae92c7f.jpg",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
-    "main.7acaea2f.css.map": "/goit-react-hw-08-phonebook/static/css/main.7acaea2f.css.map",
-    "main.8d147ee1.js.map": "/goit-react-hw-08-phonebook/static/js/main.8d147ee1.js.map"
+    "main.311f3dbc.css.map": "/goit-react-hw-08-phonebook/static/css/main.311f3dbc.css.map",
+    "main.bcc5cf50.js.map": "/goit-react-hw-08-phonebook/static/js/main.bcc5cf50.js.map",
+    "468.67fc88a1.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/468.67fc88a1.chunk.js.map",
+    "52.e65a9147.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/52.e65a9147.chunk.js.map",
+    "696.3edba595.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/696.3edba595.chunk.js.map",
+    "936.f2e2f946.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/936.f2e2f946.chunk.js.map",
+    "642.6b145bf4.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/642.6b145bf4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.8d147ee1.js"
+    "static/css/main.311f3dbc.css",
+    "static/js/main.bcc5cf50.js"
   ]
 }

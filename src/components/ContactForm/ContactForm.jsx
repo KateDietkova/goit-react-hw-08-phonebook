@@ -12,7 +12,7 @@ import { selectContacts } from 'redux/contacts/contacts-selectors';
 
 const initialValue = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 let schema = yup.object().shape({
@@ -69,7 +69,7 @@ export const ContactForm = () => {
           Number
           <FieldStyled
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required

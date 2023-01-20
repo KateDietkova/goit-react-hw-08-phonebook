@@ -1,40 +1,46 @@
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Box } from './Box/Box';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts } from 'redux/contacts/contacts-selectors';
-import { fetchContacts } from 'redux/contacts/contacts-operations';
-import { Loader } from './Loader/Loader';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
+import { PrivateRoute } from './PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { Layout } from './Layout';
+import { RestrictedRoute } from './RestrictedRoute';
+import { lazy } from 'react';
+
+const Register = lazy(() => import('../pages/Register/Register'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
-  const { items, isLoading, error } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" pt="20px">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        p="10px"
-        mb="20px"
-      >
-        <h1>Phonebook</h1>
-        <ContactForm />
-      </Box>
-      <Box display="flex" flexDirection="column" alignItems="center" p="10px">
-        <h2>Contacts</h2>
-        <Filter />
-        {isLoading && <Loader />}
-        {error && <div>Sorry, something went wrong :( Please try again</div>}
-        {items.length > 0 && !isLoading && !error && <ContactList />}
-      </Box>
-    </Box>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<div>Homepage</div>} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };

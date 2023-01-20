@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contacts-operations';
 import { ButtonContactStyled, ContactInfo } from './ContactItem.styled';
 
-export const ContactItem = ({ contact: { id, name, phone } }) => {
+export const ContactItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
   return (
     <>
       <ContactInfo>
-        {name}: {phone}
+        {name}: {number}
       </ContactInfo>
       <ButtonContactStyled
         type="button"

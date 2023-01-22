@@ -6,6 +6,7 @@ export const LoginTitle = styled.h1`
   font-size: 30px;
   text-align: center;
   font-weight: 700;
+  margin-bottom: 15px;
 `;
 
 export const FormStyled = styled(Form)`
@@ -15,19 +16,20 @@ export const FormStyled = styled(Form)`
   font-weight: 500;
 `;
 
-
-
 export const FormGroupPassword = styled.div`
-  display: flex;
-  align-items: center;
   position: relative;
 `;
 
 export const ButtonPassword = styled(Button)`
-  width: 70px;
+  width: 40px;
   position: absolute;
   right: 40px;
-  padding: 3px;
+  bottom: 12px;
+  padding: 5px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ButtonLogin = styled(Button)`

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/auth-operations';
 import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import {
   FormStyled,
   FormGroupPassword,
@@ -9,6 +10,8 @@ import {
   ButtonSignUp,
   RegisterTitle,
 } from './RegisterForm.styled';
+import { GoEyeClosed, GoEye } from 'react-icons/go';
+import { toast } from 'react-toastify';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -36,6 +39,11 @@ export const RegisterForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
+
+    if (name === '' || email === '' || password === '') {
+      toast.error('Please, fill in all fields');
+      return;
+    }
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
@@ -44,7 +52,6 @@ export const RegisterForm = () => {
     setValidated(true);
 
     dispatch(register({ name, email, password }));
-    console.log({ name, email, password });
     setName('');
     setEmail('');
     setPassword('');
@@ -53,37 +60,45 @@ export const RegisterForm = () => {
     <FormStyled noValidate onSubmit={handleSubmit} validated={validated}>
       <RegisterTitle>Registration form</RegisterTitle>
       <Form.Group className="mb-3" controlId="formGroupName">
-        <Form.Label>Name</Form.Label>
-        <Form.Control
-          required
-          type="name"
-          placeholder="Enter your name"
-          onChange={handleChange}
-          name="name"
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formGroupEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          required
-          type="email"
-          placeholder="Enter email"
-          onChange={handleChange}
-          name="email"
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formGroupPassword">
-        <Form.Label>Password</Form.Label>
-        <FormGroupPassword>
+        <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
           <Form.Control
             required
-            type={show ? 'text' : 'password'}
-            placeholder="Enter password"
+            type="name"
+            placeholder="Enter your name"
             onChange={handleChange}
-            name="password"
+            name="name"
           />
+        </FloatingLabel>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formGroupEmail">
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Email address"
+          className="mb-3"
+        >
+          <Form.Control
+            required
+            type="email"
+            placeholder="Enter email"
+            onChange={handleChange}
+            name="email"
+          />
+        </FloatingLabel>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formGroupPassword">
+        <FormGroupPassword>
+          <FloatingLabel controlId="floatingPassword" label="Password">
+            <Form.Control
+              required
+              type={show ? 'text' : 'password'}
+              placeholder="Enter password"
+              onChange={handleChange}
+              name="password"
+              minLength="8"
+            />
+          </FloatingLabel>
           <ButtonPassword variant="light" h="1.75rem" onClick={handleClick}>
-            {show ? 'Hide' : 'Show'}
+            {show ? <GoEye size="20" /> : <GoEyeClosed size="20" />}
           </ButtonPassword>
         </FormGroupPassword>
         <Form.Text id="passwordHelpBlock" muted>

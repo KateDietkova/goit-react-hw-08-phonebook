@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -19,11 +20,17 @@ export const register = createAsyncThunk(
     console.log(credential);
     try {
       const { data } = await axios.post('/users/signup', credential);
-      console.log(data);
       token.set(data.token);
+      toast.success(`Welcome, ${data.user.name}!`);
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 400) {
+        toast.error(
+          `Something wrong :( Please check your email or password and try again`
+        );
+        return thunkAPI.rejectWithValue(error.message);
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -32,12 +39,18 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credential, thunkAPI) => {
     try {
-      const { data } = await axios.post('/users/login', credential);
-      console.log(data);
-      token.set(data.token);
-      return data;
+      const response = await axios.post('/users/login', credential);
+      token.set(response.data.token);
+      toast.success(`Welcome, ${response.data.user.name}!`);
+      return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      if (error.response.status === 400) {
+        toast.error(
+          `Something wrong :( Please check your email or password and try again`
+        );
+        return thunkAPI.rejectWithValue(error.message);
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -47,7 +60,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -65,7 +78,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

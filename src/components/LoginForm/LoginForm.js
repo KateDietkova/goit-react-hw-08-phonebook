@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/auth-operations';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import InputGroup from 'react-bootstrap/InputGroup';
 import {
   FormStyled,
   FormGroupPassword,
@@ -59,13 +60,16 @@ export const LoginForm = () => {
           label="Email address"
           className="mb-3"
         >
-          <Form.Control
-            required
-            type="email"
-            placeholder="Enter email"
-            onChange={handleChange}
-            name="email"
-          />
+          <InputGroup>
+            <InputGroup.Text>@</InputGroup.Text>
+            <Form.Control
+              required
+              type="email"
+              placeholder="Enter email"
+              onChange={handleChange}
+              name="email"
+            />
+          </InputGroup>
         </FloatingLabel>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupPassword">

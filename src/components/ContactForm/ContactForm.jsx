@@ -1,82 +1,96 @@
-import { Formik } from 'formik';
-import * as yup from 'yup';
-import {
-  FormStyled,
-  FieldStyled,
-  LabelStyled,
-  ButtonStyled,
-} from './ContactForm.styled';
+import { FormStyled, ContactFormTitle, ButtonAdd } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
-const initialValue = {
-  name: '',
-  number: '',
-};
-
-let schema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Name may contain only letters, apostrophe, dash and spaces.'),
-  phone: yup
-    .number()
-    .required(
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    )
-    .positive()
-    .integer(),
-});
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 export const ContactForm = () => {
   const { items } = useSelector(selectContacts);
+  const [validated, setValidated] = useState(false);
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const handleSubmit = (value, { resetForm }) => {
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'number':
+        return setNumber(value);
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
     let isName = false;
+
+    if (name === '' || number === '') {
+      toast.error('Please, fill in all fields');
+      return;
+    }
+
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     if (items && items.length > 0) {
-      items.forEach(({ name }) => {
-        if (value.name.toLowerCase() === name.toLowerCase()) {
-          alert(`${value.name} is already in contacts`);
+      items.forEach(({ name: existedName }) => {
+        if (name.toLowerCase() === existedName.toLowerCase()) {
+          toast.error(`${name} is already in contacts`);
           isName = true;
         }
       });
     }
 
     if (!isName) {
-      dispatch(addContact(value));
-      resetForm();
+      dispatch(addContact({ name, number }));
+      setName('');
+      setNumber('');
+      setValidated(false);
     }
   };
 
   return (
-    <Formik
-      initialValues={initialValue}
-      validationScheme={schema}
-      onSubmit={handleSubmit}
-    >
-      <FormStyled>
-        <LabelStyled htmlFor="name">
-          Name
-          <FieldStyled
+    <FormStyled noValidate onSubmit={handleSubmit} validated={validated}>
+      <ContactFormTitle>Add contact</ContactFormTitle>
+      <Form.Group className="mb-3" controlId="formGroupName">
+        <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
+          <Form.Control
+            required
             type="text"
+            placeholder="Enter your name"
+            onChange={handleChange}
             name="name"
+            value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
           />
-        </LabelStyled>
-        <LabelStyled htmlFor="number">
-          Number
-          <FieldStyled
+        </FloatingLabel>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formGroupNumber">
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Number"
+          className="mb-3"
+        >
+          <Form.Control
+            required
             type="tel"
+            placeholder="Enter number"
+            onChange={handleChange}
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
+            value={number}
           />
-        </LabelStyled>
-        <ButtonStyled type="submit">Add contact</ButtonStyled>
-      </FormStyled>
-    </Formik>
+        </FloatingLabel>
+      </Form.Group>
+      <ButtonAdd type="submit">Add contact</ButtonAdd>
+    </FormStyled>
   );
 };

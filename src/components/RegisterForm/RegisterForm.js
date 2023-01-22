@@ -63,7 +63,7 @@ export const RegisterForm = () => {
         <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
           <Form.Control
             required
-            type="name"
+            type="text"
             placeholder="Enter your name"
             onChange={handleChange}
             name="name"

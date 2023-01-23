@@ -44,3 +44,17 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
+
+
+export const updateContact = createAsyncThunk(
+  'contact/update',
+  async (contactId, thunkApi) => {
+    try {
+      const { data } = axios.patch(`/contacts/${contactId}`);
+      return data;
+    } catch (error) {
+      toast.error(`Something went wrong in update contact:(`);
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

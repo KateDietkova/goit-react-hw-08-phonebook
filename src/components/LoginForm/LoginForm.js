@@ -57,7 +57,6 @@ export const LoginForm = () => {
       <Form.Group className="mb-3" controlId="formGroupEmail">
         <FloatingLabel
           controlId="floatingInput"
-          label="Email address"
           className="mb-3"
         >
           <InputGroup>

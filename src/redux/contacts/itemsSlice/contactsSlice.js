@@ -3,6 +3,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
+  updateContact,
 } from 'redux/contacts/contacts-operations';
 
 const contactsSlice = createSlice({
@@ -52,6 +53,9 @@ const contactsSlice = createSlice({
     [deleteContact.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [updateContact.fulfilled](state, action) {
+      console.log(action);
     },
   },
 });

@@ -1,3 +1,4 @@
+
 import { FormStyled, ButtonAdd } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
@@ -8,7 +9,7 @@ import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-export const ContactForm = ({ onClose }) => {
+export const ContactFormEdit = ({ onClose }) => {
   const { items } = useSelector(selectContacts);
   const [validated, setValidated] = useState(false);
   const [name, setName] = useState('');

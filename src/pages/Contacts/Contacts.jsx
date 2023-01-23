@@ -8,13 +8,13 @@ import { useEffect, useState } from 'react';
 import { SectionContacts, ButtonWTitleWrapper } from './Contacts.styled';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { Button } from 'react-bootstrap';
-import { ModalAddContact } from 'components/Modal/Modal';
+import { ModalContact } from 'components/Modal/Modal';
 import Modal from 'react-bootstrap/Modal';
+import { ContactForm } from 'components/ContactForm/ContactForm';
 
 const Contacts = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
   const dispatch = useDispatch();
-  // const [isOpenModal, setIsOpenModal] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -24,9 +24,7 @@ const Contacts = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  // const handleClick = () => {
-  //   setIsOpenModal(true);
-  // };
+
 
   return (
     <SectionContacts>
@@ -46,7 +44,11 @@ const Contacts = () => {
       )}
       {show && (
         <Modal show={show} onHide={handleClose}>
-          <ModalAddContact onClose={handleClose} />
+          <ModalContact
+            title={'Add contact'}
+            component={ContactForm}
+            onClose={handleClose}
+          />
         </Modal>
       )}
     </SectionContacts>

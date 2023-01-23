@@ -18,3 +18,18 @@ export const ButtonContactStyled = styled.button`
     background-color: #1371d6;
   }
 `;
+
+export const ButtonEditStyled = styled.button`
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: #07bad2;
+  border-radius: 5px;
+  margin-right: 8px;
+
+  :hover {
+    background-color: #1371d6;
+  }
+`;

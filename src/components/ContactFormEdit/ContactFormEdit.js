@@ -1,7 +1,7 @@
 
-import { FormStyled, ButtonAdd } from './ContactForm.styled';
+import { FormStyled, ButtonEdit } from './ContactFormEdit.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts-operations';
+import { updateContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-export const ContactFormEdit = ({ onClose }) => {
+export const ContactFormEdit = ({ onClose, id }) => {
   const { items } = useSelector(selectContacts);
   const [validated, setValidated] = useState(false);
   const [name, setName] = useState('');
@@ -52,7 +52,7 @@ export const ContactFormEdit = ({ onClose }) => {
     }
 
     if (!isName) {
-      dispatch(addContact({ name, number }));
+      dispatch(updateContact({ id, name, number }));
       onClose();
       setName('');
       setNumber('');
@@ -91,7 +91,7 @@ export const ContactFormEdit = ({ onClose }) => {
           />
         </FloatingLabel>
       </Form.Group>
-      <ButtonAdd type="submit">Add contact</ButtonAdd>
+      <ButtonEdit type="submit">Save changes</ButtonEdit>
     </FormStyled>
   );
 };

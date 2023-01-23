@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 export const RegisterTitle = styled.h1`
   font-size: 30px;
@@ -30,8 +31,28 @@ export const ButtonPassword = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .input-group &.btn {
+    position: absolute;
+    z-index: 5;
+  }
 `;
 
 export const ButtonSignUp = styled(Button)`
   width: 100px;
+`;
+
+export const FloatingLabelRegister = styled(FloatingLabel)`
+  margin-bottom: 0;
+`;
+
+export const InputPasswordRegister = styled(Form.Control)`
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+
+  .input-group > .form-floating:not(:first-child) > &.form-control,
+  .input-group > .form-floating:not(:first-child) > .form-select {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+  }
 `;

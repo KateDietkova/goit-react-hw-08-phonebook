@@ -3,12 +3,18 @@ import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/auth-operations';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { MdEmail } from 'react-icons/md';
+import { RiLockPasswordFill } from 'react-icons/ri';
+import { FaUser } from 'react-icons/fa';
 import {
   FormStyled,
   FormGroupPassword,
   ButtonPassword,
   ButtonSignUp,
   RegisterTitle,
+  FloatingLabelRegister,
+  InputPasswordRegister,
 } from './RegisterForm.styled';
 import { GoEyeClosed, GoEye } from 'react-icons/go';
 import { toast } from 'react-toastify';
@@ -60,46 +66,61 @@ export const RegisterForm = () => {
     <FormStyled noValidate onSubmit={handleSubmit} validated={validated}>
       <RegisterTitle>Registration form</RegisterTitle>
       <Form.Group className="mb-3" controlId="formGroupName">
-        <FloatingLabel controlId="floatingName" label="Name" className="mb-3">
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter your name"
-            onChange={handleChange}
-            name="name"
-          />
-        </FloatingLabel>
+        <InputGroup>
+          <InputGroup.Text>
+            <FaUser size="20" />
+          </InputGroup.Text>
+          <FloatingLabel controlId="floatingName" label="Name">
+            <Form.Control
+              required
+              type="text"
+              placeholder="Enter your name"
+              onChange={handleChange}
+              name="name"
+            />
+          </FloatingLabel>
+        </InputGroup>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupEmail">
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email address"
-          className="mb-3"
-        >
-          <Form.Control
-            required
-            type="email"
-            placeholder="Enter email"
-            onChange={handleChange}
-            name="email"
-          />
-        </FloatingLabel>
+        <InputGroup>
+          <InputGroup.Text>
+            <MdEmail size="20" />
+          </InputGroup.Text>
+          <FloatingLabel controlId="floatingInput" label="Email address">
+            <Form.Control
+              required
+              type="email"
+              placeholder="Enter email"
+              onChange={handleChange}
+              name="email"
+            />
+          </FloatingLabel>
+        </InputGroup>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupPassword">
         <FormGroupPassword>
-          <FloatingLabel controlId="floatingPassword" label="Password">
-            <Form.Control
-              required
-              type={show ? 'text' : 'password'}
-              placeholder="Enter password"
-              onChange={handleChange}
-              name="password"
-              minLength="8"
-            />
-          </FloatingLabel>
-          <ButtonPassword variant="light" h="1.75rem" onClick={handleClick}>
-            {show ? <GoEye size="20" /> : <GoEyeClosed size="20" />}
-          </ButtonPassword>
+          <InputGroup>
+            <InputGroup.Text>
+              <RiLockPasswordFill size="20" />
+            </InputGroup.Text>
+            <FloatingLabelRegister
+              controlId="floatingPassword"
+              label="Password"
+            >
+              <InputPasswordRegister
+                required
+                type={show ? 'text' : 'password'}
+                placeholder="Enter password"
+                onChange={handleChange}
+                name="password"
+                minLength="8"
+              />
+            </FloatingLabelRegister>
+
+            <ButtonPassword variant="light" h="1.75rem" onClick={handleClick}>
+              {show ? <GoEye size="20" /> : <GoEyeClosed size="20" />}
+            </ButtonPassword>
+          </InputGroup>
         </FormGroupPassword>
         <Form.Text id="passwordHelpBlock" muted>
           Your password must be 8-20 characters long, contain letters and

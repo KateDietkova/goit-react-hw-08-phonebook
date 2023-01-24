@@ -38,11 +38,16 @@ export const ContactItem = ({ contact: { id, name, number } }) => {
           }}
         >
           Delete
-          {deletingContactId === id && <LoaderButton/>}
+          {deletingContactId === id && <LoaderButton />}
         </ButtonContactStyled>
       </div>
       {show && (
-        <Modal show={show} onHide={handleClose}>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+        >
           <ModalContact
             title={'Edit contact'}
             component={ContactFormEdit}

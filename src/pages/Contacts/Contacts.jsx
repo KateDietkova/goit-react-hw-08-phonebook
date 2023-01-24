@@ -44,7 +44,12 @@ const Contacts = () => {
         <NoContacts>You haven't any contacts yet</NoContacts>
       )}
       {show && (
-        <Modal show={show} onHide={handleClose}>
+        <Modal
+          show={show}
+          backdrop="static"
+          keyboard={false}
+          onHide={handleClose}
+        >
           <ModalContact
             title={'Add contact'}
             component={ContactForm}

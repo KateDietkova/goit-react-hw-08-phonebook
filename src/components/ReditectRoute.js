@@ -6,5 +6,5 @@ export const RedirectRoute = ({ redirectTo = '/' }) => {
 };
 
 RedirectRoute.propTypes = {
-  redirectTo: PropTypes.string.isRequired,
+  redirectTo: PropTypes.string,
 };

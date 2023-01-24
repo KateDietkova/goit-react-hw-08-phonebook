@@ -30,7 +30,7 @@ ModalContact.propTypes = {
   title: PropTypes.string.isRequired,
   component: PropTypes.elementType.isRequired,
   onClose: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  userNumber: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  userName: PropTypes.string,
+  userNumber: PropTypes.string,
 };

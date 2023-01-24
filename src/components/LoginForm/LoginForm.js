@@ -87,7 +87,7 @@ export const LoginForm = () => {
                 placeholder="Enter password"
                 onChange={handleChange}
                 name="password"
-                minLength="8"
+                minLength="7"
               />
             </FloatingLabel>
             <ButtonPassword variant="light" h="1.75rem" onClick={handleClick}>
@@ -96,7 +96,7 @@ export const LoginForm = () => {
           </InputGroup>
         </FormGroupPassword>
         <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 8-20 characters long, contain letters and
+          Your password must be 7-20 characters long, contain letters and
           numbers, and must not contain spaces, special characters, or emoji.
         </Form.Text>
       </Form.Group>

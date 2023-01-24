@@ -50,11 +50,16 @@ export const RegisterForm = () => {
       toast.error('Please, fill in all fields');
       return;
     }
+
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     }
 
+    if (password.length < 7) {
+      toast.error('Your password must be 7-20 characters long');
+      return;
+    }
     setValidated(true);
 
     dispatch(register({ name, email, password }));
@@ -113,7 +118,7 @@ export const RegisterForm = () => {
                 placeholder="Enter password"
                 onChange={handleChange}
                 name="password"
-                minLength="8"
+                minLength="7"
               />
             </FloatingLabelRegister>
 
@@ -123,7 +128,7 @@ export const RegisterForm = () => {
           </InputGroup>
         </FormGroupPassword>
         <Form.Text id="passwordHelpBlock" muted>
-          Your password must be 8-20 characters long, contain letters and
+          Your password must be 7-20 characters long, contain letters and
           numbers, and must not contain spaces, special characters, or emoji.
         </Form.Text>
       </Form.Group>

@@ -10,17 +10,17 @@ import {
 import { ModalContact } from 'components/Modal/Modal';
 import Modal from 'react-bootstrap/Modal';
 import { ContactFormEdit } from 'components/ContactFormEdit/ContactFormEdit';
-
-
+import { LoaderButton } from 'components/Loader/Loader';
 
 export const ContactItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
-   const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deletingContactId, setDeletingContactId] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   return (
     <>
@@ -33,9 +33,13 @@ export const ContactItem = ({ contact: { id, name, number } }) => {
         </ButtonEditStyled>
         <ButtonContactStyled
           type="button"
-          onClick={() => dispatch(deleteContact(id))}
+          onClick={() => {
+            setDeletingContactId(id);
+            dispatch(deleteContact(id));
+          }}
         >
           Delete
+          {deletingContactId === id && <LoaderButton/>}
         </ButtonContactStyled>
       </div>
       {show && (

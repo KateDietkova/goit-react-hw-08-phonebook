@@ -16,7 +16,6 @@ export const ContactItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
   const [deletingContactId, setDeletingContactId] = useState('');
 
   const handleClose = () => setShow(false);

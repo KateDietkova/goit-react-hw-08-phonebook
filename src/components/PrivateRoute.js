@@ -7,11 +7,10 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
 
   const shoudRedirect = !isLoggedIn && !isRefreshing;
 
-  return shoudRedirect ? <Navigate to={redirectTo} /> : Component;
+  return shoudRedirect ? <Navigate to={redirectTo} /> : Component
 };
 
 PrivateRoute.propTypes = {
   Component: PropTypes.elementType,
   redirectTo: PropTypes.string.isRequired,
-}
-
+};

@@ -8,6 +8,8 @@ import { Layout } from './Layout';
 import { RestrictedRoute } from './RestrictedRoute';
 import { lazy } from 'react';
 import { Toastify } from './Toast/Toast';
+import { useAuth } from 'hooks/useAuth';
+import { Loader } from './Loader/Loader';
 
 const Homepage = lazy(() => import('../pages/Homepage/Homepage'));
 const Register = lazy(() => import('../pages/Register/Register'));
@@ -16,6 +18,7 @@ const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -24,33 +27,38 @@ export const App = () => {
   return (
     <>
       <Toastify />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Homepage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<Register />}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<Contacts />} />
-            }
-          />
-          <Route path="*" element={<RedirectRoute />} />
-        </Route>
-      </Routes>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Homepage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  redirectTo="/contacts"
+                  component={<Register />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              }
+            />
+
+            <Route path="*" element={<RedirectRoute />} />
+          </Route>
+        </Routes>
+      )}
     </>
   );
 };

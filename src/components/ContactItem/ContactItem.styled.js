@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
 
 
 export const ContactInfo = styled.p`
     margin: 0;
 `
 
-export const ButtonContactStyled = styled.button`
+export const ButtonContactStyled = styled(Button)`
   display: inline-block;
   padding: 10px 20px;
   border: none;
@@ -13,13 +14,12 @@ export const ButtonContactStyled = styled.button`
   cursor: pointer;
   background-color: #07bad2;
   border-radius: 5px;
+  min-width: 80px;
 
-  :hover {
-    background-color: #1371d6;
-  }
+
 `;
 
-export const ButtonEditStyled = styled.button`
+export const ButtonEditStyled = styled(Button)`
   display: inline-block;
   padding: 10px 20px;
   border: none;
@@ -28,8 +28,5 @@ export const ButtonEditStyled = styled.button`
   background-color: #07bad2;
   border-radius: 5px;
   margin-right: 8px;
-
-  :hover {
-    background-color: #1371d6;
-  }
+  min-width: 80px;
 `;

@@ -24,8 +24,6 @@ const Contacts = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-
-
   return (
     <SectionContacts>
       <ButtonWTitleWrapper>
@@ -37,9 +35,8 @@ const Contacts = () => {
       <Filter />
       {isLoading && <Loader />}
       {error && <div>Sorry, something went wrong :( Please try again</div>}
-      {items.length > 0 ? (
-        <ContactList />
-      ) : (
+      {items.length > 0 && !isLoading && <ContactList />}
+      {!isLoading && items.length === 0 && (
         <div>You haven't any contacts yet</div>
       )}
       {show && (

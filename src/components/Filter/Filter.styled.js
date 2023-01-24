@@ -1,16 +1,23 @@
 import styled from 'styled-components';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
-export const FilterStyled = styled.input`
-  outline: none;
-  padding: 8px;
-  border-radius: 5px;
-  width: 200px;
+export const FloatingLabelStyled = styled(FloatingLabel)`
+  margin-bottom: 0;
 `;
 
-export const LabelFilter = styled.label`
+export const FilterInput = styled(Form.Control)`
+  width: 600px;
+`;
+
+export const FilterWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 15px;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+`;
+
+export const InputGroupStyled = styled(InputGroup)`
+  width: 55%;
 `;

@@ -10,11 +10,12 @@ export const ContactListStyled = styled.ul`
 `;
 
 export const ContactListItemStyled = styled.li`
-  border: 1px solid;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
-  width: 300px;
+  padding: 20px 15px;
+  width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgba(255, 255, 255, 0.5);
 `;

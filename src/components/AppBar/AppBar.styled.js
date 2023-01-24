@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import img from '../../images/headerLightBlue.jpg';
+import img from '../../images/background-header-dark.png';
 
 export const Header = styled.header`
   padding: 30px;

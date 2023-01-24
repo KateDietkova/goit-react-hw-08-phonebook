@@ -20,4 +20,9 @@ export const LogOutBtn = styled(Button)`
   justify-content: center;
   gap: 8px;
   min-width: 120px;
+  padding: 10px;
+`;
+
+export const UserName = styled.p`
+  color: #fff;
 `;

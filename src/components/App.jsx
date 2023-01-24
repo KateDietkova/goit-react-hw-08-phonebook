@@ -8,6 +8,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { lazy } from 'react';
 import { Toastify } from './Toast/Toast';
 
+const Homepage = lazy(() => import('../pages/Homepage/Homepage'))
 const Register = lazy(() => import('../pages/Register/Register'));
 const Login = lazy(() => import('../pages/Login/Login'));
 const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
@@ -24,7 +25,7 @@ export const App = () => {
       <Toastify />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<div>Homepage</div>} />
+          <Route index element={<Homepage/>} />
           <Route
             path="/register"
             element={

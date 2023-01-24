@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import { ContactFormEdit } from 'components/ContactFormEdit/ContactFormEdit';
 
 
+
 export const ContactItem = ({ contact: { id, name, number } }) => {
   const dispatch = useDispatch();
 
@@ -26,15 +27,17 @@ export const ContactItem = ({ contact: { id, name, number } }) => {
       <ContactInfo>
         {name}: {number}
       </ContactInfo>
-      <ButtonEditStyled type="button" onClick={() => handleShow()}>
-        Edit
-      </ButtonEditStyled>
-      <ButtonContactStyled
-        type="button"
-        onClick={() => dispatch(deleteContact(id))}
-      >
-        Delete
-      </ButtonContactStyled>
+      <div>
+        <ButtonEditStyled type="button" onClick={() => handleShow()}>
+          Edit
+        </ButtonEditStyled>
+        <ButtonContactStyled
+          type="button"
+          onClick={() => dispatch(deleteContact(id))}
+        >
+          Delete
+        </ButtonContactStyled>
+      </div>
       {show && (
         <Modal show={show} onHide={handleClose}>
           <ModalContact
@@ -42,6 +45,9 @@ export const ContactItem = ({ contact: { id, name, number } }) => {
             component={ContactFormEdit}
             onClose={handleClose}
             id={id}
+            userName={name}
+            userNumber={number}
+            isEdit={true}
           />
         </Modal>
       )}

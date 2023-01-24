@@ -44,7 +44,10 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
     setValidated(true);
     if (items && items.length > 0) {
       items.forEach(({ name: existedName }) => {
-        if (name.toLowerCase() === existedName.toLowerCase()) {
+        if (
+          name.toLowerCase() === existedName.toLowerCase() &&
+          name.toLowerCase() !== userName.toLowerCase()
+        ) {
           toast.error(`${name} is already in contacts`);
           isName = true;
         }

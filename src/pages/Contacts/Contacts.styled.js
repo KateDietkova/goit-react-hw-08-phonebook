@@ -16,3 +16,11 @@ export const ButtonWTitleWrapper = styled.div`
   margin-bottom: 30px;
   padding: 10px 30px;
 `;
+
+
+export const NoContacts = styled.div`
+  padding: 30px 15px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+`;

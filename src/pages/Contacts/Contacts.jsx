@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
 import { useEffect, useState } from 'react';
-import { SectionContacts, ButtonWTitleWrapper } from './Contacts.styled';
+import {
+  SectionContacts,
+  ButtonWTitleWrapper,
+  NoContacts,
+} from './Contacts.styled';
 import { IoMdPersonAdd } from 'react-icons/io';
 import { Button } from 'react-bootstrap';
 import { ModalContact } from 'components/Modal/Modal';
@@ -37,7 +41,7 @@ const Contacts = () => {
       {error && <div>Sorry, something went wrong :( Please try again</div>}
       {items.length > 0 && !isLoading && <ContactList />}
       {!isLoading && items.length === 0 && (
-        <div>You haven't any contacts yet</div>
+        <NoContacts>You haven't any contacts yet</NoContacts>
       )}
       {show && (
         <Modal show={show} onHide={handleClose}>

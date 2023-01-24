@@ -13,5 +13,9 @@ export const ButtonEdit = styled(Button)`
   gap: 10px;
   width: 120px;
   padding: 8px;
-  margin: 0 auto;
+`;
+
+
+export const ButtonEditWrapper = styled.div`
+  text-align: center;
 `;

@@ -1,4 +1,8 @@
-import { FormStyled, ButtonEdit } from './ContactFormEdit.styled';
+import {
+  FormStyled,
+  ButtonEdit,
+  ButtonEditWrapper,
+} from './ContactFormEdit.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
@@ -98,10 +102,12 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
           />
         </FloatingLabel>
       </Form.Group>
-      <ButtonEdit type="submit" onClick={() => setIsSaving(true)}>
-        Save changes
-        {isSaving && <LoaderButton />}
-      </ButtonEdit>
+      <ButtonEditWrapper>
+        <ButtonEdit type="submit" onClick={() => setIsSaving(true)}>
+          Save changes
+          {isSaving && <LoaderButton />}
+        </ButtonEdit>
+      </ButtonEditWrapper>
     </FormStyled>
   );
 };

@@ -4,6 +4,7 @@ import { updateContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -93,4 +94,12 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
       <ButtonEdit type="submit">Save changes</ButtonEdit>
     </FormStyled>
   );
+};
+
+
+ContactFormEdit.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  userNumber: PropTypes.string.isRequired,
 };

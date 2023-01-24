@@ -1,4 +1,5 @@
 import Modal from 'react-bootstrap/Modal';
+import PropTypes from 'prop-types';
 
 export const ModalContact = ({
   title,
@@ -23,4 +24,13 @@ export const ModalContact = ({
       </Modal.Body>
     </>
   );
+};
+
+ModalContact.propTypes = {
+  title: PropTypes.string.isRequired,
+  component: PropTypes.elementType.isRequired,
+  onClose: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  userNumber: PropTypes.string.isRequired,
 };

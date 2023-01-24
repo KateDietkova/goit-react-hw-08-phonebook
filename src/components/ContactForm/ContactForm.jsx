@@ -4,6 +4,7 @@ import { addContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/contacts/contacts-selectors';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -93,4 +94,9 @@ export const ContactForm = ({ onClose }) => {
       <ButtonAdd type="submit">Add contact</ButtonAdd>
     </FormStyled>
   );
+};
+
+
+ContactForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };

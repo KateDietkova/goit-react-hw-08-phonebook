@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import imgLight from '../../images/background-contacts.png';
 import imgDark from '../../images/background-homepage-dark.png';
 
-export const SectionHomepage = styled.section`
-  padding: 0;
-`;
 export const HomepageListItem = styled.li`
   display: flex;
   justify-content: space-between;
@@ -61,5 +58,5 @@ export const TitleHomepage = styled.h1`
 `;
 
 export const Description = styled.p`
-    width: 400px;
-`
+  width: 400px;
+`;

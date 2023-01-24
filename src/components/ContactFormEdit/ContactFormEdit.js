@@ -8,12 +8,14 @@ import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { LoaderButton } from 'components/Loader/Loader';
 
 export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
   const { items } = useSelector(selectContacts);
   const [validated, setValidated] = useState(false);
   const [name, setName] = useState(userName);
   const [number, setNumber] = useState(userNumber);
+  const [isSaving, setIsSaving] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -60,6 +62,7 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
       setName('');
       setNumber('');
       setValidated(false);
+      setIsSaving(false);
     }
   };
 
@@ -94,11 +97,13 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
           />
         </FloatingLabel>
       </Form.Group>
-      <ButtonEdit type="submit">Save changes</ButtonEdit>
+      <ButtonEdit type="submit" onClick={() => setIsSaving(true)}>
+        Save changes
+        {isSaving && <LoaderButton />}
+      </ButtonEdit>
     </FormStyled>
   );
 };
-
 
 ContactFormEdit.propTypes = {
   onClose: PropTypes.func.isRequired,

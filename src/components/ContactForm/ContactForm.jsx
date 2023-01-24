@@ -8,12 +8,15 @@ import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { LoaderButton } from 'components/Loader/Loader';
 
 export const ContactForm = ({ onClose }) => {
   const { items } = useSelector(selectContacts);
   const [validated, setValidated] = useState(false);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [isAdding, setIsAdding] = useState('');
+
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -57,6 +60,7 @@ export const ContactForm = ({ onClose }) => {
       setName('');
       setNumber('');
       setValidated(false);
+      setIsAdding(false);
     }
   };
 
@@ -91,7 +95,10 @@ export const ContactForm = ({ onClose }) => {
           />
         </FloatingLabel>
       </Form.Group>
-      <ButtonAdd type="submit">Add contact</ButtonAdd>
+      <ButtonAdd type="submit" onClick={() => setIsAdding(true)}>
+        Add contact
+        {isAdding && <LoaderButton/>}
+      </ButtonAdd>
     </FormStyled>
   );
 };

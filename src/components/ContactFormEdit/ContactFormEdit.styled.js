@@ -9,7 +9,8 @@ export const FormStyled = styled(Form)`
 `;
 
 export const ButtonEdit = styled(Button)`
-  display: block;
+  display: inline-flex;
+  gap: 10px;
   width: 120px;
   padding: 8px;
   margin: 0 auto;

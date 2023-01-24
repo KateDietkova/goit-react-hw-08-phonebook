@@ -51,7 +51,8 @@ export const ContactFormEdit = ({ onClose, id, userName, userNumber }) => {
           name.toLowerCase() !== userName.toLowerCase()
         ) {
           toast.error(`${name} is already in contacts`);
-          isName = true;
+            isName = true;
+            setIsSaving(false);
         }
       });
     }

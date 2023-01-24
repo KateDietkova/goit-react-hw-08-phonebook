@@ -50,6 +50,7 @@ export const ContactForm = ({ onClose }) => {
         if (name.toLowerCase() === existedName.toLowerCase()) {
           toast.error(`${name} is already in contacts`);
           isName = true;
+          setIsAdding(false);
         }
       });
     }

@@ -53,6 +53,10 @@ export const authSlice = createSlice({
       state.error = null;
       state.isRefreshing = false;
     },
+    [fetchCurrentUser.rejected](state) {
+      state.isRefreshing = false;
+      state.error = null;
+    },
   },
 });
 
